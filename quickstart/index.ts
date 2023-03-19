@@ -7,6 +7,8 @@ const resourceGroup = new resources.ResourceGroup("resourceGroup");
 
 // Create an Azure resource (Storage Account)
 const storageAccount = new storage.StorageAccount("sa", {
+    accountName: "devtszkp",
+    allowBlobPublicAccess: false,
     resourceGroupName: resourceGroup.name,
     sku: {
         name: storage.SkuName.Standard_LRS,
