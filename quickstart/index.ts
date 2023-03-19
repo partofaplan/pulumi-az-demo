@@ -16,6 +16,13 @@ const storageAccount = new storage.StorageAccount("sa", {
     kind: storage.Kind.StorageV2,
 });
 
+// Enable static website support
+const staticWebsite = new storage.StorageAccountStaticWebsite("staticWebsite", {
+    accountName: storageAccount.name,
+    resourceGroupName: resourceGroup.name,
+    indexDocument: "index.html",
+});
+
 // Export the primary key of the Storage Account
 const storageAccountKeys = storage.listStorageAccountKeysOutput({
     resourceGroupName: resourceGroup.name,
@@ -23,3 +30,15 @@ const storageAccountKeys = storage.listStorageAccountKeysOutput({
 });
 
 export const primaryStorageKey = storageAccountKeys.keys[0].value;
+
+// Upload the file
+const indexHtml = new storage.Blob("index.html", {
+    resourceGroupName: resourceGroup.name,
+    accountName: storageAccount.name,
+    containerName: staticWebsite.containerName,
+    source: new pulumi.asset.FileAsset("index.html"),
+    contentType: "text/html",
+});
+
+// Web endpoint to the website
+export const staticEndpoint = storageAccount.primaryEndpoints.web;
