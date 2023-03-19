@@ -1,2 +1,3 @@
 config:
   azure-native:location: centralus
+  infra:environment: dev
