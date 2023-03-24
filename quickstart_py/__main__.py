@@ -10,12 +10,20 @@ resource_group = resources.ResourceGroup("resource_group")
 # Create an Azure resource (Storage Account)
 account = storage.StorageAccount(
     "sa",
+    account_name='devpyzkp',
     resource_group_name=resource_group.name,
     sku=storage.SkuArgs(
         name=storage.SkuName.STANDARD_LRS,
     ),
     kind=storage.Kind.STORAGE_V2,
+
 )
+
+# Enable static website support
+static_website = storage.StorageAccountStaticWebsite("staticWebsite",
+    account_name=account.name,
+    resource_group_name=resource_group.name,
+    index_document="index.html")
 
 # Export the primary key of the Storage Account
 primary_key = (
@@ -29,3 +37,14 @@ primary_key = (
 )
 
 pulumi.export("primary_storage_key", primary_key)
+
+# Upload the file
+index_html = storage.Blob("index.html",
+    resource_group_name=resource_group.name,
+    account_name=account.name,
+    container_name=static_website.container_name,
+    source=pulumi.FileAsset("index.html"),
+    content_type="text/html")
+
+# Web endpoint to the website
+pulumi.export("staticEndpoint", account.primary_endpoints.web)
