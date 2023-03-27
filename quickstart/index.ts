@@ -8,8 +8,16 @@ const resourceGroup = new resources.ResourceGroup("resourceGroup");
 // Add storage account name
 var saAccountName =  "devtszkp";
 
-// // Create an Azure resource (Storage Account)
-const storageAccount = main.storageAccount;
+// Create an Azure resource (Storage Account)
+const storageAccount = new storage.StorageAccount("sa", {
+    accountName: "devtszkp",
+    allowBlobPublicAccess: false,
+    resourceGroupName: resourceGroup.name,
+    sku: {
+        name: storage.SkuName.Standard_LRS,
+    },
+    kind: storage.Kind.StorageV2,
+});
 
 // // Enable static website support
 const staticWebsite = new storage.StorageAccountStaticWebsite("staticWebsite", {
