@@ -3,7 +3,7 @@ import * as resources from "@pulumi/azure-native/resources";
 import * as storage from "@pulumi/azure-native/storage";
 
 // Create an Azure Resource Group
-const resourceGroup = main.resourceGroup;
+const resourceGroup = new resources.ResourceGroup("resourceGroup");
 
 // Add storage account name
 var saAccountName =  "devtszkp";
