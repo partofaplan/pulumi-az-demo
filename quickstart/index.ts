@@ -1,17 +1,14 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as resources from "@pulumi/azure-native/resources";
 import * as storage from "@pulumi/azure-native/storage";
+import { devStorageAcct }  from './dev';
 
 // Create an Azure Resource Group
 const resourceGroup = new resources.ResourceGroup("resourceGroup");
 
-// Add storage account name
-var saAccountName =  "devtszkp";
-
 // Create an Azure resource (Storage Account)
 const storageAccount = new storage.StorageAccount("sa", {
-    accountName: "devtszkp",
-    allowBlobPublicAccess: false,
+    ...devStorageAcct,
     resourceGroupName: resourceGroup.name,
     sku: {
         name: storage.SkuName.Standard_LRS,
@@ -19,14 +16,14 @@ const storageAccount = new storage.StorageAccount("sa", {
     kind: storage.Kind.StorageV2,
 });
 
-// // Enable static website support
+// Enable static website support
 const staticWebsite = new storage.StorageAccountStaticWebsite("staticWebsite", {
     accountName: storageAccount.name,
     resourceGroupName: resourceGroup.name,
     indexDocument: "index.html",
 });
 
-// // Export the primary key of the Storage Account
+// Export the primary key of the Storage Account
 const storageAccountKeys = storage.listStorageAccountKeysOutput({
     resourceGroupName: resourceGroup.name,
     accountName: storageAccount.name
@@ -34,7 +31,7 @@ const storageAccountKeys = storage.listStorageAccountKeysOutput({
 
 export const primaryStorageKey = storageAccountKeys.keys[0].value;
 
-// // Upload the file
+// Upload the file
 const indexHtml = new storage.Blob("index.html", {
     resourceGroupName: resourceGroup.name,
     accountName: storageAccount.name,
@@ -43,5 +40,5 @@ const indexHtml = new storage.Blob("index.html", {
     contentType: "text/html",
 });
 
-// // Web endpoint to the website
+// Web endpoint to the website
 export const staticEndpoint = storageAccount.primaryEndpoints.web;
