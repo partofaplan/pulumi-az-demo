@@ -2,11 +2,18 @@ import * as pulumi from "@pulumi/pulumi";
 import * as resources from "@pulumi/azure-native/resources";
 import * as storage from "@pulumi/azure-native/storage";
 
+// Set the environment variable based on infra:environment
+const env = new pulumi.Config("infra").require("environment");
+// Import whichever module matches the environment, otherwise just use index as default
+const config = env === "dev" ? require("./dev") : env === "prod" ? require("./prod") : require("./index");
+
 // Create an Azure Resource Group
 const resourceGroup = new resources.ResourceGroup("resourceGroup");
 
 // Create an Azure resource (Storage Account)
 const storageAccount = new storage.StorageAccount("sa", {
+    // Insert the value for stAccName from the env module
+    accountName: config.stAcctName,
     resourceGroupName: resourceGroup.name,
     sku: {
         name: storage.SkuName.Standard_LRS,
