@@ -13,3 +13,16 @@ This is the YAML stack. Deploys a standard blob storage to Azure.
 ## ./quickstart_py/
 
 This is the Python stack. Deploys a standard blob storage to Azure.
+
+## Creating a service principal
+
+1. In Azure, go to the Azure AD on your account.
+2. Click "App registrations".
+3. Click "New registration".
+4. Create a registration using any name. I also prefer to create it under "single tenant" usage.
+5. After creation, copy down the client ID and tenant ID on the new account.
+6. Find your subscription and click on the "Access control (IAM)" option on the menu.
+7. Click "Add role assignment".
+8. Click "Contributor".
+9. Add your new app registration as a contributor to the subscription.
+10. Set the Azure configuration settings in your Pulumi configs using the model here: https://www.pulumi.com/registry/packages/azure-native/installation-configuration/#make-tokens-available-to-pulumi

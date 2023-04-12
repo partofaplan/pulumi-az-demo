@@ -1,6 +1,7 @@
 """An Azure RM Python Pulumi program"""
 
 import pulumi
+import lab_zach
 from pulumi_azure_native import storage
 from pulumi_azure_native import resources
 
@@ -10,7 +11,7 @@ resource_group = resources.ResourceGroup("resource_group")
 # Create an Azure resource (Storage Account)
 account = storage.StorageAccount(
     "sa",
-    account_name='devpyzkp',
+    account_name=lab_zach.uniqueStorageName,
     resource_group_name=resource_group.name,
     sku=storage.SkuArgs(
         name=storage.SkuName.STANDARD_LRS,
