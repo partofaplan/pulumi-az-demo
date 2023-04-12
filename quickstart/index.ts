@@ -4,8 +4,8 @@ import * as storage from "@pulumi/azure-native/storage";
 
 // Set the environment variable based on infra:environment
 const env = new pulumi.Config("infra").require("environment");
-// Import whichever module matches the environment, otherwise just use index as default
-const config = env === "dev" ? require("./dev") : env === "prod" ? require("./prod") : require("./index");
+// Import whichever module matches the environment and also match the name, otherwise just use index as default
+const config = require(`./${env}.ts`);
 
 // Create an Azure Resource Group
 const resourceGroup = new resources.ResourceGroup("resourceGroup");

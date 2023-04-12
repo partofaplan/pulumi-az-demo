@@ -1,0 +1,4 @@
+config:
+  azure-native:location: eastus
+  infra:environment: lab_zach
+  pulumi-az-demo:name: lab_zach

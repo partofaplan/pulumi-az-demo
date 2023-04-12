@@ -1,2 +1,2 @@
 // Declaring the storage account name
-export const stAcctName = "devtszkp";
+export const stAcctName = "labtszkp";

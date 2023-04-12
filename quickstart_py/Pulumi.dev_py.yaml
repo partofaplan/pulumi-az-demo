@@ -1,2 +1,7 @@
 config:
+  azure-native:clientId: 3e894a87-a87a-4936-9ff4-6ccdfae34212
+  azure-native:clientSecret:
+    secure: AAABAOEWuFR03b5baYqwBakwTtHTtuvczIEfgZ7QHTuofc0eja9Tt6wpzDdh+BGcpanXe4D8c5GGstVbOxbtlYig/xA8jfH/
   azure-native:location: centralus
+  azure-native:subscriptionId: 0dc36b91-9fcb-419a-bce5-2f1540ae2335
+  azure-native:tenantId: fb2aedc5-6507-423f-913a-08ad2016cc7b
