@@ -25,4 +25,4 @@ This is the Python stack. Deploys a standard blob storage to Azure.
 7. Click "Add role assignment".
 8. Click "Contributor".
 9. Add your new app registration as a contributor to the subscription.
-10. Set the Azure configuration settings in your Pulumi configs using the model here: https://www.pulumi.com/registry/packages/azure-native/installation-configuration/#make-tokens-available-to-pulumi
+10. Set the Azure configuration settings in your Pulumi configs using the model [here](https://www.pulumi.com/registry/packages/azure-native/installation-configuration/#make-tokens-available-to-pulumi).
