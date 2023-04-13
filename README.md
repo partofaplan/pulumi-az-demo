@@ -26,3 +26,13 @@ This is the Python stack. Deploys a standard blob storage to Azure.
 8. Click "Contributor".
 9. Add your new app registration as a contributor to the subscription.
 10. Set the Azure configuration settings in your Pulumi configs using the model [here](https://www.pulumi.com/registry/packages/azure-native/installation-configuration/#make-tokens-available-to-pulumi).
+
+## Create a secret for your Pulumi config
+1. In Azure, go to Active Directory.
+2. Click on your app registration name of the service principal for your environment.
+3. Click "Certificates & secrets".
+4. Click "New client secret".
+5. Type in a description of the secret and set the expires time.
+6. Click "Add".
+7. Copy the secret ID and value into a local notepad.
+8. In your Pulumi stack, type `pulumi config set --secret azure-native:clientSecret <SECRET VALUE>`.

@@ -1,2 +1,9 @@
 config:
-  azure-native:location: centralus
+  azure-native:clientId: 3e894a87-a87a-4936-9ff4-6ccdfae34212
+  azure-native:clientSecret:
+    secure: AAABAIqrFBOn0vc+B0MPOHV2fg3eyCjXrRimlmdS+wdyuzl0sn+6q1wGDOk9MQNuVqU8BVmfTz+AFSBs3OIuOUdbmICW8HhR
+  azure-native:location: eastus
+  azure-native:subscriptionId: 0dc36b91-9fcb-419a-bce5-2f1540ae2335
+  azure-native:tenantId: fb2aedc5-6507-423f-913a-08ad2016cc7b
+  infra:environment: dev
+  pulumi-az-demo:name: dev
