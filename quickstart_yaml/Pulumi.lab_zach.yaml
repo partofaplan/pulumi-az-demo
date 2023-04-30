@@ -7,3 +7,4 @@ config:
   azure-native:tenantId: fb2aedc5-6507-423f-913a-08ad2016cc7b
   infra:environment: lab_zach
   pulumi-az-demo:name: lab_zach
+  infra:saAccountName: labzachzkp
