@@ -5,3 +5,5 @@ config:
   azure-native:location: centralus
   azure-native:subscriptionId: 0dc36b91-9fcb-419a-bce5-2f1540ae2335
   azure-native:tenantId: fb2aedc5-6507-423f-913a-08ad2016cc7b
+  infra:environment: dev
+  pulumi-az-demo:name: dev
