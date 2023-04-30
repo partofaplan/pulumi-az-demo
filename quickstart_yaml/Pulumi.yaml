@@ -12,7 +12,7 @@ resources:
   # Create an Azure resource (Storage Account)
   sa:
     properties:
-      accountName: 'devyamlzkp'
+      accountName: ${infra:saAccountName}
       kind: StorageV2
       resourceGroupName: ${resourceGroup.name}
       sku:
