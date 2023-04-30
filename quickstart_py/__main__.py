@@ -1,9 +1,13 @@
-"""An Azure RM Python Pulumi program"""
-
 import pulumi
-import lab_zach
 from pulumi_azure_native import storage
 from pulumi_azure_native import resources
+
+
+import yaml
+with open('config.yaml', 'r') as file:
+    prime_service = yaml.safe_load(file)
+
+env = pulumi.Config("infra").require("environment");
 
 # Create an Azure Resource Group
 resource_group = resources.ResourceGroup("resource_group")
@@ -11,7 +15,7 @@ resource_group = resources.ResourceGroup("resource_group")
 # Create an Azure resource (Storage Account)
 account = storage.StorageAccount(
     "sa",
-    account_name=lab_zach.uniqueStorageName,
+    account_name=prime_service[env]['uniqueStorageName'],
     resource_group_name=resource_group.name,
     sku=storage.SkuArgs(
         name=storage.SkuName.STANDARD_LRS,
